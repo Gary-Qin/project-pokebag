@@ -57,7 +57,11 @@ export const CardForm = ({
     const url = `https://api.pokemontcg.io/v2/cards/${data.cardSet}-${data.cardNum}`;
 
     try {
-      const response = await axios.get(url);
+      const response = await axios.get(url, {
+        headers: {
+          "X-Api-Key": import.meta.env.TCG_API_KEY,
+        },
+      });
       const data = await response.data.data;
 
       setCurrentCard({
